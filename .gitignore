@@ -1,3 +1,7 @@
+# Rust
+target/
+.cargo/config.toml
+
 # ESP-IDF
 build/
 sdkconfig
@@ -11,6 +15,12 @@ dependencies.lock
 *.swp
 *.swo
 
-# OS
+# Local configuration & Secrets
+.env
+cfg.toml
+secrets.toml
+
+# OS & Temporary
 .DS_Store
 Thumbs.db
+*.log

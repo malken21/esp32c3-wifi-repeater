@@ -1,0 +1,13 @@
+[build]
+target = "riscv32imc-esp-espidf"
+
+[target.riscv32imc-esp-espidf]
+linker = "ldproxy"
+runner = "espflash flash --monitor" # Optional: if user has espflash
+rustflags = ["-C", "default-linker-libraries", "-C", "link-arg=-Wl,--allow-multiple-definition"]
+
+[env]
+MCU = "esp32c3"
+ESP_IDF_VERSION = "v5.3"
+# IDF_PATH = { value = "C:\\path\\to\\esp-idf", relative = false }
+# ESP_IDF_SDKCONFIG_DEFAULTS = "C:\\path\\to\\project\\sdkconfig.defaults"
