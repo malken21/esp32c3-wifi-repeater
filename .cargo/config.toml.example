@@ -3,11 +3,24 @@ target = "riscv32imc-esp-espidf"
 
 [target.riscv32imc-esp-espidf]
 linker = "ldproxy"
-runner = "espflash flash --monitor" # Optional: if user has espflash
+runner = "espflash flash"
 rustflags = ["-C", "default-linker-libraries", "-C", "link-arg=-Wl,--allow-multiple-definition"]
+
+[unstable]
+build-std = ["std", "panic_abort"]
 
 [env]
 MCU = "esp32c3"
 ESP_IDF_VERSION = "v5.3"
-# IDF_PATH = { value = "C:\\path\\to\\esp-idf", relative = false }
-# ESP_IDF_SDKCONFIG_DEFAULTS = "C:\\path\\to\\project\\sdkconfig.defaults"
+ESP_IDF_SDKCONFIG_DEFAULTS = { value = "sdkconfig.defaults", relative = true }
+# Default WiFi credentials (used if NVS has no saved config).
+# After flashing, you can also change these via the serial CLI: SET sta_ssid / SET sta_pass / SAVE
+REPEATER_STA_SSID = "your-upstream-ssid"
+REPEATER_STA_PASS = "your-upstream-password"
+REPEATER_STA_USE_STATIC = "false"
+REPEATER_STA_STATIC_IP = "192.168.10.2"
+REPEATER_STA_GATEWAY = "192.168.10.1"
+REPEATER_STA_NETMASK = "255.255.255.0"
+REPEATER_AP_SSID = "ESP32-C3-Repeater"
+REPEATER_AP_PASS = ""
+REPEATER_AP_CHANNEL = "1"
